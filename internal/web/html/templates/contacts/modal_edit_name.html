@@ -1,0 +1,112 @@
+<div id="modal-content" class="modal-dialog modal-md" hx-target-2*="this" hx-target-4*="this">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit name</h5>
+      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <form target="_top" hx-post="/web/contacts/{{.Contact.ID}}/name"
+      hx-on::after-request="document.getElementById('closeBtn').click()" hx-swap="outerHTML" hx-target="body">
+      <div class="modal-body">
+
+        <div 
+          id="prefixField"
+          class="form-outline mb-4 collapse multi-collapse"  
+          data-mdb-collapse-init
+          data-mdb-input-init
+        >
+          <input type="text" id="namePrefix" name="namePrefix" class="form-control" value="{{.Contact.Name.Prefix}}" />
+          <label class="form-label" for="namePrefix">Name prefix</label>
+        </div>
+
+        <div class="form-outline mb-4" data-mdb-input-init>
+          <input type="text" id="firstName" name="firstName" class="form-control" value="{{.Contact.Name.FirstName}}" />
+          <label class="form-label" for="firstName">First name</label>
+        </div>
+
+        <div 
+          id="middleNameField"
+          class="form-outline mb-4 collapse multi-collapse"  
+          data-mdb-collapse-init
+          data-mdb-input-init
+        >
+          <input type="text" id="middleName" name="middleName" class="form-control" value="{{.Contact.Name.MiddleName}}" />
+          <label class="form-label" for="middleName">Middle name</label>
+        </div>
+
+        <div class="form-outline mb-4" data-mdb-input-init>
+          <input type="text" id="surname" name="surname" class="form-control" value="{{.Contact.Name.Surname}}" />
+          <label class="form-label" for="surname">Surname</label>
+        </div>
+
+        <div 
+          id="suffixField"
+          class="form-outline mb-4 collapse multi-collapse"  
+          data-mdb-collapse-init
+          data-mdb-input-init
+        >
+          <input type="text" id="nameSuffix" name="nameSuffix" class="form-control" value="{{.Contact.Name.Suffix}}" />
+          <label class="form-label" for="nameSuffix">Name suffix</label>
+        </div>
+
+        <a
+          id="detailsButton"
+          class="mb-3"
+          role="button"
+          data-mdb-collapse-init
+          data-mdb-ripple-init
+          data-mdb-target=".multi-collapse"
+          aria-expanded="false"
+          aria-controls="prefixField middleNameField suffixField"
+        ><i class="fas fa-chevron-down"></i> More details</a>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="submit" type="button" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+
+  <script type="module">
+import {Input, Ripple, Collapse, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB(Ripple, Input, Collapse)
+
+document.getElementById("modal-content").querySelectorAll('.form-outline').forEach((formOutline) => {
+  new Input(formOutline).init();
+});
+
+
+var myModal = document.getElementById('modal-content');
+var myInput = document.getElementById('firstName');
+
+const elem = document.getElementById('detailsButton')
+const foo = Collapse.getOrCreateInstance(elem)
+
+myModal.addEventListener('shown.mdb.modal', () => {
+  myInput.focus();
+  myInput.select();
+});
+
+myModal.addEventListener('show.mdb.collapse', () => {
+  let link = document.getElementById("detailsButton").
+    innerHTML = '<i class="fas fa-chevron-up"></i> Less details'
+
+  document.getElementById("modal-content").querySelectorAll('.form-outline').forEach((formOutline) => {
+    new Input(formOutline).init();
+  });
+});
+
+myModal.addEventListener('hide.mdb.collapse', () => {
+  let link = document.getElementById("detailsButton").
+    innerHTML = '<i class="fas fa-chevron-down"></i> More details'
+
+
+  document.getElementById("modal-content").querySelectorAll('.form-outline').forEach((formOutline) => {
+    new Input(formOutline).init();
+  });
+});
+
+  </script>

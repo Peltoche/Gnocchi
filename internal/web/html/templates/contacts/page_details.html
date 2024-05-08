@@ -1,0 +1,42 @@
+<header>
+  <nav class="navbar sticky-top bg-primary">
+    <div class="container-fluid justify-content-start">
+      <a class="navbar-nav" href="/web/contacts" hx-boost="true"><i class="fas fa-arrow-left fa-lg"></i></a>
+      <a class="navbar-brand ps-4">Contacts</a>
+    </div>
+  </nav>
+
+  <div class="p-3" style="background-color: {{.Contact.Color}};">
+    <div class="p-4 text-center">
+      <i class="fas fa-user fa-7x text-black"></i>
+    </div>
+    <div class="d-flex flex-row align-items-center">
+      {{ $name := .Contact.Name}}
+      <h3 class="text-truncate">{{$name.DisplayName}} </h3> 
+      <button 
+        type="button" 
+        class="btn btn-link" 
+        data-mdb-target="#modal-target"
+        data-mdb-modal-init 
+        data-mdb-toggle="modal" 
+        hx-get="/web/contacts/{{.Contact.ID}}/name" 
+        hx-target="#modal-target"
+        hx-trigger="click" 
+        hx-swap="innerHTML"
+        data-mdb-ripple-init 
+        data-mdb-ripple-color="dark"
+      ><i class="fas fa-pen"></i></button>
+    </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+</div>
+
+
+<script type="module">
+import {Button, Ripple, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB({ Button, Ripple});
+
+</script>

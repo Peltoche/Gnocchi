@@ -1,0 +1,28 @@
+<!doctype html >
+{{ template "header"}}
+
+<body hx-ext="response-targets" hx-target-5*="this">
+  <main>
+    <!-- Modal -->
+    <div id="modal-target" class="modal modal-blur fade" aria-hidden="false">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    {{ yield }}
+  </main>
+
+
+  <script src="/assets/js/libs/htmx.min.js"></script>
+  <script src="/assets/js/libs/response-targets.js"></script>
+</body>
+
+  <script type="module">
+import {Modal, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB({Modal});
+
+  </script>
+
+</html>

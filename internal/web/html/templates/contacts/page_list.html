@@ -1,0 +1,21 @@
+<nav class="navbar sticky-top bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand">Contacts</a>
+  </div>
+</nav>
+
+<div class="container-fluid py-2">
+  <div class="list-group list-group-light">
+    {{ range .Contacts}}
+    <a href="/web/contacts/{{.ID}}" class="list-group-item text-truncate list-group-item-action px-3 border-0">{{ .Name.DisplayName }}</a>
+    {{end}}
+  </div>
+</div>
+
+<div class="fixed-action-btn" data-mdb-button-init data-mdb-ripple-init>
+  <a class="btn btn-floating text-white btn-lg" hx-replace-url="true" hx-post="/web/contacts" hx-trigger="click" hx-target="body" data-mdb-ripple-init style="background-color: #f44336;">
+    <i class="fas fa-plus fa-lg"></i>
+  </a>
+  <ul>
+  </ul>
+</div>
