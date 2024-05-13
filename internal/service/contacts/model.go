@@ -1,7 +1,6 @@
 package contacts
 
 import (
-	"fmt"
 	"strconv"
 	"time"
 
@@ -91,7 +90,6 @@ func (c Contact) Color() string {
 	twoletterhexa := string(c.id)[:2]
 	index, _ := strconv.ParseInt(twoletterhexa, 16, 64)
 
-	fmt.Printf("index: %d -> %d\n\n", len(colors), int(index)%len(colors))
 	return colors[int(index)%len(colors)]
 }
 
