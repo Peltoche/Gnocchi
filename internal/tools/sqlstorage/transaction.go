@@ -12,11 +12,7 @@ import (
 	"github.com/Peltoche/gnocchi/internal/tools/logger"
 )
 
-type closeTx func()
-
 var txKey = contextKey{"txKey"}
-
-var doNothing closeTx = func() {}
 
 type contextKey struct {
 	key string
