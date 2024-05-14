@@ -1,4 +1,4 @@
-module github.com/Peltoche/halium
+module github.com/Peltoche/gnocchi
 
 go 1.22.0
 

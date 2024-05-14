@@ -18,12 +18,12 @@ import (
 )
 
 func Test_NewRunCmd(t *testing.T) {
-	t.Setenv("HALIUM_DEV", "true")
+	t.Setenv("GNOCCHI_DEV", "true")
 
 	t.Run("success with default args", func(t *testing.T) {
 		cmd := NewRunCmd("gnocchi-test")
 
-		t.Setenv("HALIUM_DEBUG", "true")
+		t.Setenv("GNOCCHI_DEBUG", "true")
 
 		ctx, cancel := context.WithCancel(context.Background())
 		defer cancel()
@@ -73,9 +73,9 @@ func Test_NewRunCmd(t *testing.T) {
 
 		port := startutils.GetFreePort(t)
 
-		t.Setenv("HALIUM_HTTP-PORT", strconv.Itoa(port))
-		t.Setenv("HALIUM_LOG-LEVEL", "info")
-		t.Setenv("HALIUM_FOLDER", "duckloud-test")
+		t.Setenv("GNOCCHI_HTTP-PORT", strconv.Itoa(port))
+		t.Setenv("GNOCCHI_LOG-LEVEL", "info")
+		t.Setenv("GNOCCHI_FOLDER", "duckloud-test")
 
 		cmd.SetArgs([]string{"--memory-fs", "--dev"})
 		var cmdErr error
