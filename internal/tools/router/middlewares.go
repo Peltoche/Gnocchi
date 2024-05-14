@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"slices"
 
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 )

@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Peltoche/halium/internal/tools/secret"
+	"github.com/Peltoche/gnocchi/internal/tools/secret"
 	"golang.org/x/crypto/argon2"
 )
 

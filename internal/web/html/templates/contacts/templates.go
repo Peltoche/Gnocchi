@@ -1,6 +1,6 @@
 package contacts
 
-import "github.com/Peltoche/halium/internal/service/contacts"
+import "github.com/Peltoche/gnocchi/internal/service/contacts"
 
 type ListPageTmpl struct {
 	Contacts []contacts.Contact

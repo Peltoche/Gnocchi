@@ -5,7 +5,7 @@ package password
 import (
 	context "context"
 
-	secret "github.com/Peltoche/halium/internal/tools/secret"
+	secret "github.com/Peltoche/gnocchi/internal/tools/secret"
 	mock "github.com/stretchr/testify/mock"
 )
 

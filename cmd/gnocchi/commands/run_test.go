@@ -12,7 +12,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Peltoche/halium/internal/tools/startutils"
+	"github.com/Peltoche/gnocchi/internal/tools/startutils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -21,7 +21,7 @@ func Test_NewRunCmd(t *testing.T) {
 	t.Setenv("HALIUM_DEV", "true")
 
 	t.Run("success with default args", func(t *testing.T) {
-		cmd := NewRunCmd("halium-test")
+		cmd := NewRunCmd("gnocchi-test")
 
 		t.Setenv("HALIUM_DEBUG", "true")
 
@@ -31,7 +31,7 @@ func Test_NewRunCmd(t *testing.T) {
 		port := startutils.GetFreePort(t)
 
 		// --memory-fs is used to leave no trace to the host
-		cmd.SetArgs([]string{"--dev", "--memory-fs", "--folder=/halium-test", fmt.Sprintf("--http-port=%d", port)})
+		cmd.SetArgs([]string{"--dev", "--memory-fs", "--folder=/gnocchi-test", fmt.Sprintf("--http-port=%d", port)})
 		var cmdErr error
 		var wg sync.WaitGroup
 		wg.Add(1)
@@ -66,7 +66,7 @@ func Test_NewRunCmd(t *testing.T) {
 	})
 
 	t.Run("with some env variable setup", func(t *testing.T) {
-		cmd := NewRunCmd("halium-test")
+		cmd := NewRunCmd("gnocchi-test")
 
 		ctx, cancel := context.WithCancel(context.Background())
 		defer cancel()
@@ -112,14 +112,14 @@ func Test_NewRunCmd(t *testing.T) {
 	})
 
 	t.Run("with a self-signed-certificate", func(t *testing.T) {
-		cmd := NewRunCmd("halium-test")
+		cmd := NewRunCmd("gnocchi-test")
 
 		ctx, cancel := context.WithCancel(context.Background())
 		defer cancel()
 
 		port := startutils.GetFreePort(t)
 
-		cmd.SetArgs([]string{"--self-signed-cert", "--memory-fs", "--dev", "--folder=/halium-test", "--log-level=info", fmt.Sprintf("--http-port=%d", port)})
+		cmd.SetArgs([]string{"--self-signed-cert", "--memory-fs", "--dev", "--folder=/gnocchi-test", "--log-level=info", fmt.Sprintf("--http-port=%d", port)})
 		var cmdErr error
 		var wg sync.WaitGroup
 		wg.Add(1)
@@ -158,7 +158,7 @@ func Test_NewRunCmd(t *testing.T) {
 	})
 
 	t.Run("with --self-signed-args and --tls-key should failed", func(t *testing.T) {
-		cmd := NewRunCmd("halium-test")
+		cmd := NewRunCmd("gnocchi-test")
 
 		cmd.SetErr(io.Discard)
 		cmd.SetOut(io.Discard)

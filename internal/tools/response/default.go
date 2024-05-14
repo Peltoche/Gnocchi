@@ -5,8 +5,8 @@ import (
 	"log/slog"
 	"net/http"
 
-	"github.com/Peltoche/halium/internal/tools/errs"
-	"github.com/Peltoche/halium/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
 	"github.com/unrolled/render"
 )
 

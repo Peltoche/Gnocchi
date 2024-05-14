@@ -3,7 +3,7 @@ package password
 import (
 	"context"
 
-	"github.com/Peltoche/halium/internal/tools/secret"
+	"github.com/Peltoche/gnocchi/internal/tools/secret"
 )
 
 //go:generate mockery --name Password

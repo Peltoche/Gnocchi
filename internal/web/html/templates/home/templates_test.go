@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/Peltoche/halium/internal/web/html"
+	"github.com/Peltoche/gnocchi/internal/web/html"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

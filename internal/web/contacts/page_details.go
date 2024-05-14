@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/Peltoche/halium/internal/service/contacts"
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/errs"
-	"github.com/Peltoche/halium/internal/tools/router"
-	"github.com/Peltoche/halium/internal/tools/uuid"
-	"github.com/Peltoche/halium/internal/web/html"
-	contactstmpl "github.com/Peltoche/halium/internal/web/html/templates/contacts"
+	"github.com/Peltoche/gnocchi/internal/service/contacts"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/router"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
+	"github.com/Peltoche/gnocchi/internal/web/html"
+	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/contacts"
 	"github.com/go-chi/chi/v5"
 )
 

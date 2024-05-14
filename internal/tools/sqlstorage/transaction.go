@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/errs"
-	"github.com/Peltoche/halium/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
 )
 
 type closeTx func()

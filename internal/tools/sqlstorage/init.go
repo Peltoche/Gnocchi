@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/Peltoche/halium/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools"
 	"go.uber.org/fx"
 )
 

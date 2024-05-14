@@ -7,9 +7,9 @@ import (
 	"fmt"
 
 	sq "github.com/Masterminds/squirrel"
-	"github.com/Peltoche/halium/internal/tools/ptr"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
-	"github.com/Peltoche/halium/internal/tools/uuid"
+	"github.com/Peltoche/gnocchi/internal/tools/ptr"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 )
 
 const tableName = "contacts"

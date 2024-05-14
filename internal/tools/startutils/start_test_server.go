@@ -3,8 +3,8 @@ package startutils
 import (
 	"testing"
 
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/spf13/afero"
 )
 

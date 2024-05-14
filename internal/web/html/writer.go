@@ -11,10 +11,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/dustin/go-humanize"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/Peltoche/halium/internal/tools/logger"
-	"github.com/Peltoche/halium/internal/tools/uuid"
 	"github.com/unrolled/render"
 )
 

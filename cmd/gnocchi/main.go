@@ -3,12 +3,12 @@ package main
 import (
 	"os"
 
-	"github.com/Peltoche/halium/cmd/halium/commands"
-	"github.com/Peltoche/halium/internal/tools/buildinfos"
+	"github.com/Peltoche/gnocchi/cmd/gnocchi/commands"
+	"github.com/Peltoche/gnocchi/internal/tools/buildinfos"
 	"github.com/spf13/cobra"
 )
 
-const binaryName = "halium"
+const binaryName = "gnochhi"
 
 type exitCode int
 
@@ -25,7 +25,7 @@ func main() {
 func mainRun() exitCode {
 	cmd := &cobra.Command{
 		Use:     binaryName,
-		Short:   "Manage your halium instance in your terminal.",
+		Short:   "Manage your gnocchi instance in your terminal.",
 		Version: buildinfos.Version(),
 	}
 

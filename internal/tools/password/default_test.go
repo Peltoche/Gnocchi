@@ -4,9 +4,9 @@ import (
 	"context"
 	"testing"
 
+	"github.com/Peltoche/gnocchi/internal/tools/secret"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/Peltoche/halium/internal/tools/secret"
 )
 
 func TestBcryptPassword(t *testing.T) {

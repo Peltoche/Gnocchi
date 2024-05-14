@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/Peltoche/halium/internal/service/contacts"
-	"github.com/Peltoche/halium/internal/tools/router"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
-	"github.com/Peltoche/halium/internal/web/html"
-	contactstmpl "github.com/Peltoche/halium/internal/web/html/templates/contacts"
+	"github.com/Peltoche/gnocchi/internal/service/contacts"
+	"github.com/Peltoche/gnocchi/internal/tools/router"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/web/html"
+	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/contacts"
 	"github.com/go-chi/chi/v5"
 )
 

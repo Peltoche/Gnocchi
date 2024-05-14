@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/Peltoche/halium/internal/tools/router"
+	"github.com/Peltoche/gnocchi/internal/tools/router"
 	"go.uber.org/fx"
 )
 

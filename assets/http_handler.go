@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Peltoche/gnocchi/internal/tools/router"
 	"github.com/go-chi/chi/v5"
-	"github.com/Peltoche/halium/internal/tools/router"
 )
 
 //go:embed public

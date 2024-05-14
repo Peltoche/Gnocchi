@@ -10,15 +10,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Peltoche/gnocchi/assets"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools/router"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/tools/startutils"
+	"github.com/Peltoche/gnocchi/internal/web/html"
 	"github.com/spf13/afero"
 	"github.com/stretchr/testify/require"
-	"github.com/Peltoche/halium/assets"
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/logger"
-	"github.com/Peltoche/halium/internal/tools/router"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
-	"github.com/Peltoche/halium/internal/tools/startutils"
-	"github.com/Peltoche/halium/internal/web/html"
 	"go.uber.org/fx"
 )
 

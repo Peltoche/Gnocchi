@@ -5,10 +5,10 @@ import (
 	"os"
 	"path"
 
+	"github.com/Peltoche/gnocchi/internal/server"
+	"github.com/Peltoche/gnocchi/internal/tools/buildinfos"
 	"github.com/adrg/xdg"
 	"github.com/spf13/cobra"
-	"github.com/Peltoche/halium/internal/server"
-	"github.com/Peltoche/halium/internal/tools/buildinfos"
 )
 
 var configDirs = append(xdg.DataDirs, xdg.DataHome)
@@ -17,15 +17,15 @@ func NewRunCmd(_ string) *cobra.Command {
 	var defaultFolder string
 
 	for _, dir := range configDirs {
-		_, err := os.Stat(path.Join(dir, "halium"))
+		_, err := os.Stat(path.Join(dir, "gnocchi"))
 		if err == nil {
-			defaultFolder = path.Join(dir, "halium")
+			defaultFolder = path.Join(dir, "gnocchi")
 			break
 		}
 	}
 
 	if defaultFolder == "" {
-		defaultFolder = path.Join(xdg.DataHome, "halium")
+		defaultFolder = path.Join(xdg.DataHome, "gnocchi")
 	}
 
 	cmd := cobra.Command{

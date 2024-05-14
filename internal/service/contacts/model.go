@@ -4,7 +4,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/Peltoche/halium/internal/tools/uuid"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	v "github.com/go-ozzo/ozzo-validation"
 )
 

@@ -4,11 +4,11 @@ import (
 	"log/slog"
 	"testing"
 
+	"github.com/Peltoche/gnocchi/internal/tools/clock"
+	"github.com/Peltoche/gnocchi/internal/tools/password"
+	"github.com/Peltoche/gnocchi/internal/tools/response"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/stretchr/testify/assert"
-	"github.com/Peltoche/halium/internal/tools/clock"
-	"github.com/Peltoche/halium/internal/tools/password"
-	"github.com/Peltoche/halium/internal/tools/response"
-	"github.com/Peltoche/halium/internal/tools/uuid"
 )
 
 func TestDefaultToolbox(t *testing.T) {

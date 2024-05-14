@@ -4,9 +4,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Peltoche/gnocchi/internal/tools"
 	"github.com/stretchr/testify/assert"
 	mock "github.com/stretchr/testify/mock"
-	"github.com/Peltoche/halium/internal/tools"
 )
 
 func TestCron(t *testing.T) {

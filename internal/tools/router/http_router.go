@@ -8,7 +8,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/Peltoche/halium/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools"
 	"github.com/coreos/go-systemd/daemon"
 	chi "github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"

@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/Peltoche/halium/internal/tools/uuid"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/brianvoe/gofakeit/v7"
 )
 

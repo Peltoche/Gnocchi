@@ -5,9 +5,9 @@ import (
 	"time"
 
 	sq "github.com/Masterminds/squirrel"
+	"github.com/Peltoche/gnocchi/internal/tools/ptr"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/Peltoche/halium/internal/tools/ptr"
 )
 
 func TestSQLTime(t *testing.T) {

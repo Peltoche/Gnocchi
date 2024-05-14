@@ -5,11 +5,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/clock"
-	"github.com/Peltoche/halium/internal/tools/errs"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
-	"github.com/Peltoche/halium/internal/tools/uuid"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/clock"
+	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 )
 
 //go:generate mockery --name storage

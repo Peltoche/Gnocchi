@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -18,17 +18,17 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Peltoche/gnocchi/assets"
+	"github.com/Peltoche/gnocchi/internal/server"
+	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/logger"
+	"github.com/Peltoche/gnocchi/internal/tools/response"
+	"github.com/Peltoche/gnocchi/internal/tools/router"
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
+	"github.com/Peltoche/gnocchi/internal/web/html"
 	"github.com/spf13/afero"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/Peltoche/halium/assets"
-	"github.com/Peltoche/halium/internal/server"
-	"github.com/Peltoche/halium/internal/tools"
-	"github.com/Peltoche/halium/internal/tools/logger"
-	"github.com/Peltoche/halium/internal/tools/response"
-	"github.com/Peltoche/halium/internal/tools/router"
-	"github.com/Peltoche/halium/internal/tools/sqlstorage"
-	"github.com/Peltoche/halium/internal/web/html"
 )
 
 var (
@@ -55,7 +55,7 @@ func NewConfigFromCmd(cmd *cobra.Command) (server.Config, error) {
 	var cfg Config
 
 	viper.AutomaticEnv()
-	viper.SetEnvPrefix("halium")
+	viper.SetEnvPrefix("gnocchi")
 
 	viper.BindPFlags(cmd.Flags())
 

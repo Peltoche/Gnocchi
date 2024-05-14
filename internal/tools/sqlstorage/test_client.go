@@ -3,8 +3,8 @@ package sqlstorage
 import (
 	"testing"
 
+	"github.com/Peltoche/gnocchi/internal/migrations"
 	"github.com/stretchr/testify/require"
-	"github.com/Peltoche/halium/internal/migrations"
 )
 
 func NewTestStorage(t *testing.T) Querier {
