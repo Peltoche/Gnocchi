@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/Peltoche/halium/internal/tools/uuid"
+	v "github.com/go-ozzo/ozzo-validation"
 )
 
 var colors = []string{
@@ -96,6 +97,10 @@ func (c Contact) Color() string {
 func (c Contact) CreatedAt() time.Time { return c.createdAt }
 
 type CreateCmd struct{}
+
+func (t CreateCmd) Validate() error {
+	return v.ValidateStruct(&t)
+}
 
 type EditNameCmd struct {
 	Contact    *Contact

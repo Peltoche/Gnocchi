@@ -14,6 +14,7 @@ type Service interface {
 	GetByID(ctx context.Context, id uuid.UUID) (*Contact, error)
 	EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, error)
 	GetAll(ctx context.Context, paginateCmd *sqlstorage.PaginateCmd) ([]Contact, error)
+	Delete(ctx context.Context, contact *Contact) error
 }
 
 func Init(

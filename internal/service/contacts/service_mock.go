@@ -42,6 +42,20 @@ func (_m *MockService) Create(ctx context.Context, cmd *CreateCmd) (*Contact, er
 	return r0, r1
 }
 
+// Delete provides a mock function with given fields: ctx, contact
+func (_m *MockService) Delete(ctx context.Context, contact *Contact) error {
+	ret := _m.Called(ctx, contact)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, *Contact) error); ok {
+		r0 = rf(ctx, contact)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // EditName provides a mock function with given fields: ctx, cmd
 func (_m *MockService) EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, error) {
 	ret := _m.Called(ctx, cmd)

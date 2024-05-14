@@ -10,7 +10,6 @@ import (
 	"github.com/Peltoche/halium/internal/tools/errs"
 	"github.com/Peltoche/halium/internal/tools/sqlstorage"
 	"github.com/Peltoche/halium/internal/tools/uuid"
-	v "github.com/go-ozzo/ozzo-validation"
 )
 
 //go:generate mockery --name storage
@@ -19,6 +18,7 @@ type storage interface {
 	GetByID(ctx context.Context, id uuid.UUID) (*Contact, error)
 	Patch(ctx context.Context, contact *Contact, fields map[string]any) error
 	GetAll(ctx context.Context, cmd *sqlstorage.PaginateCmd) ([]Contact, error)
+	Delete(ctx context.Context, contactID uuid.UUID) error
 }
 
 type service struct {
@@ -58,6 +58,15 @@ func (s *service) GetByID(ctx context.Context, id uuid.UUID) (*Contact, error) {
 	return res, nil
 }
 
+func (s *service) Delete(ctx context.Context, contact *Contact) error {
+	err := s.storage.Delete(ctx, contact.id)
+	if err != nil {
+		return errs.Internal(err)
+	}
+
+	return nil
+}
+
 // Create will create and register a new user.
 func (s *service) Create(ctx context.Context, cmd *CreateCmd) (*Contact, error) {
 	err := cmd.Validate()
@@ -77,10 +86,6 @@ func (s *service) Create(ctx context.Context, cmd *CreateCmd) (*Contact, error) 
 	}
 
 	return &contact, nil
-}
-
-func (t CreateCmd) Validate() error {
-	return v.ValidateStruct(&t)
 }
 
 func (s *service) EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, error) {

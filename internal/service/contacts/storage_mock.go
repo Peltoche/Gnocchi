@@ -16,6 +16,20 @@ type mockStorage struct {
 	mock.Mock
 }
 
+// Delete provides a mock function with given fields: ctx, contactID
+func (_m *mockStorage) Delete(ctx context.Context, contactID uuid.UUID) error {
+	ret := _m.Called(ctx, contactID)
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(context.Context, uuid.UUID) error); ok {
+		r0 = rf(ctx, contactID)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
 // GetAll provides a mock function with given fields: ctx, cmd
 func (_m *mockStorage) GetAll(ctx context.Context, cmd *sqlstorage.PaginateCmd) ([]Contact, error) {
 	ret := _m.Called(ctx, cmd)

@@ -35,6 +35,7 @@ func (h *DetailsPage) Register(r chi.Router, mids *router.Middlewares) {
 	}
 
 	r.Get("/web/contacts/{contactID}", h.getDetails)
+	r.Delete("/web/contacts/{contactID}", h.deleteContact)
 	r.Get("/web/contacts/{contactID}/name", h.getEditName)
 	r.Post("/web/contacts/{contactID}/name", h.editName)
 }
@@ -59,6 +60,35 @@ func (h *DetailsPage) getDetails(w http.ResponseWriter, r *http.Request) {
 	h.html.WriteHTMLTemplate(w, r, http.StatusOK, &contactstmpl.DetailsPageTmpl{
 		Contact: contact,
 	})
+}
+
+func (h *DetailsPage) deleteContact(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	id, err := h.uuid.Parse(chi.URLParam(r, "contactID"))
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+
+	contact, err := h.contacts.GetByID(ctx, id)
+	if errors.Is(err, errs.ErrNotFound) {
+		http.Redirect(w, r, "/web/contacts", http.StatusTemporaryRedirect)
+		return
+	}
+	if err != nil {
+		h.html.WriteHTMLErrorPage(w, r, fmt.Errorf("failed to get a contact by id: %w", err))
+		return
+	}
+
+	err = h.contacts.Delete(ctx, contact)
+	if err != nil {
+		h.html.WriteHTMLErrorPage(w, r, fmt.Errorf("failed to delete contact %q: %w", id, err))
+		return
+	}
+
+	w.Header().Add("HX-Redirect", "/web/contacts")
+	w.WriteHeader(http.StatusNoContent)
 }
 
 func (h *DetailsPage) getEditName(w http.ResponseWriter, r *http.Request) {

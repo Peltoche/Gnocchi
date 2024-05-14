@@ -87,6 +87,19 @@ func (s *sqlStorage) Patch(ctx context.Context, contact *Contact, fields map[str
 	return nil
 }
 
+func (s *sqlStorage) Delete(ctx context.Context, contactID uuid.UUID) error {
+	_, err := sq.
+		Delete(tableName).
+		Where(sq.Eq{"id": string(contactID)}).
+		RunWith(s.db).
+		ExecContext(ctx)
+	if err != nil {
+		return fmt.Errorf("sql error: %w", err)
+	}
+
+	return nil
+}
+
 func (s *sqlStorage) getByKeys(ctx context.Context, wheres ...any) ([]Contact, error) {
 	query := sq.
 		Select(allFields...).
