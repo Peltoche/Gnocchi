@@ -69,20 +69,15 @@ func (s *service) Delete(ctx context.Context, contact *Contact) error {
 
 // Create will create and register a new user.
 func (s *service) Create(ctx context.Context, cmd *CreateCmd) (*Contact, error) {
-	err := cmd.Validate()
-	if err != nil {
-		return nil, errs.Validation(err)
-	}
-
 	contact := Contact{
 		id:        s.uuid.New(),
 		name:      &Name{},
 		createdAt: s.clock.Now(),
 	}
 
-	err = s.storage.Save(ctx, &contact)
+	err := s.storage.Save(ctx, &contact)
 	if err != nil {
-		return nil, fmt.Errorf("storage error: %w", err)
+		return nil, errs.Internal(fmt.Errorf("storage error: %w", err))
 	}
 
 	return &contact, nil
@@ -105,7 +100,7 @@ func (s *service) EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, err
 		"name_suffix": newName.suffix,
 	})
 	if err != nil {
-		return nil, fmt.Errorf("failed to patch the contact name: %w", err)
+		return nil, errs.Internal(fmt.Errorf("failed to patch the contact name: %w", err))
 	}
 
 	updatedContact := *cmd.Contact
