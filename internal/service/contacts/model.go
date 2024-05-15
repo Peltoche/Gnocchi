@@ -68,7 +68,7 @@ func (n *Name) DisplayName() string {
 	}
 
 	if n.suffix != "" {
-		res = res + n.suffix + ""
+		res = res + n.suffix + " "
 	}
 
 	res = res[:len(res)-1]
