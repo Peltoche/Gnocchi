@@ -21,9 +21,9 @@ type Config struct {
 }
 
 type HTTPHandler struct {
-	cfg       Config
-	assetFS   http.FileSystem
 	startDate time.Time
+	assetFS   http.FileSystem
+	cfg       Config
 }
 
 func NewHTTPHandler(cfg Config) *HTTPHandler {
@@ -37,7 +37,11 @@ func NewHTTPHandler(cfg Config) *HTTPHandler {
 		assetFS = http.FS(memFS)
 	}
 
-	return &HTTPHandler{cfg, assetFS, time.Now()}
+	return &HTTPHandler{
+		startDate: time.Now(),
+		assetFS:   assetFS,
+		cfg:       cfg,
+	}
 }
 
 // Register the http endpoints into the given mux server.
