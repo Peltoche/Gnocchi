@@ -111,7 +111,7 @@ func (s *sqlStorage) getByKeys(ctx context.Context, wheres ...any) ([]Contact, e
 
 	rows, err := query.
 		RunWith(s.db).
-		Query()
+		QueryContext(ctx)
 	if errors.Is(err, sql.ErrNoRows) {
 		return nil, errNotFound
 	}
