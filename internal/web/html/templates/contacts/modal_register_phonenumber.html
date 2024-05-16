@@ -1,0 +1,134 @@
+<div id="modal-content" class="modal-dialog modal-md" hx-target-4*="this">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Phone number</h5>
+      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <form target="_top" hx-post="/web/contacts/{{.Contact.ID}}/phones"
+      hx-on::after-request="document.getElementById('closeBtn').click()" hx-swap="outerHTML" hx-target="body">
+      <div class="modal-body">
+
+        <div class="mb-3">
+        <select name="type" class="select" data-mdb-select-init>
+          <option selected value="Home">Home</option>
+          <option value="Work">Work</option>
+        </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div id="flagDropdown" class="dropdown">
+            <button class="btn shadow-0 dropdown-toggle" type="button" data-mdb-dropdown-init data-mdb-ripple-init aria-expanded="false">
+              <i id="currentFlag" class="flag flag-{{.Selected.Class}}"></i>
+            </button>
+            <ul class="dropdown-menu" style="max-height: 200px; overflow-y: scroll;">
+              <li>
+                <div class="input-group mt-2 mx-2">
+                  <div class="form-outline w-auto" data-mdb-input-init>
+                    <input type="search" autocomplete="off" id="search-input-dropdown" class="form-control" />
+                    <label class="form-label" for="search-input-dropdown">Search</label>
+                  </div>
+                </div>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+
+              {{ range .Phones}}
+              <li data-country-name="{{.Name}}" data-phone-example="{{.Example}}" data-country-region="{{.Iso2Code}}" data-country-dial="{{.DialCode}}" data-country-class="{{.Class}}">
+                <a class="dropdown-item align-items-center"><i class="flag flag-{{.Class}}"></i> {{.Name}} <span class="text-white-50 ms-1">+{{.DialCode}}</span></a>
+              </li>
+              {{end}}
+            </ul>
+          </div>
+          <span id="dialCode" class="input-group-text" id="basic-addon1">+{{.Selected.DialCode}}</span>
+          <input type="hidden" name="contactID" value="{{.Contact.ID}}"/>
+          <input id="regionInput" type="hidden" name="region" value="{{.Selected.Iso2Code}}"/>
+          <input id="phoneInput" type="tel" name="input" value="{{.Input}}" placeholder={{.Selected.Example}} class="form-control" data-mdb-input-mask-init aria-label="phone number" />
+        </div>
+      </div>
+
+      {{if .Error}}
+      <br>
+      <div id="validation-alert" class="alert alert-danger role=">{{.Error}}</div>
+      {{end}}
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" id="closeBtn" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+    <button type="submit" type="button" class="btn btn-primary">Create</button>
+  </div>
+  </form>
+</div>
+</div>
+
+<script type="module">
+import {Input, Ripple, Dropdown, Select, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB(Ripple, Input, Dropdown)
+
+let modal = document.getElementById("modal-content")
+modal.querySelectorAll('.form-outline').forEach((formOutline) => {
+  new Input(formOutline).init();
+});
+
+modal.querySelectorAll('.dropdown-toggle').forEach((dropdown) => {
+  Dropdown.getOrCreateInstance(dropdown)
+});
+
+modal.querySelectorAll('.select').forEach((select) => {
+  Select.getOrCreateInstance(select);
+});
+
+
+const searchInputDropdown = document.getElementById('search-input-dropdown');
+const dropdownOptions = document.querySelectorAll('.dropdown-item');
+
+searchInputDropdown.addEventListener('input', () => {
+  const filter = searchInputDropdown.value.toLowerCase();
+  showOptions();
+  const valueExist = !!filter.length;
+
+  if (valueExist) {
+    dropdownOptions.forEach((el) => {
+      const elText = el.textContent.trim().toLowerCase();
+      const isIncluded = elText.includes(filter);
+      if (!isIncluded) {
+        el.style.display = 'none';
+      }
+    });
+  }
+});
+
+const showOptions = () => {
+  dropdownOptions.forEach((el) => {
+    el.style.display = 'flex';
+  })
+}
+
+document.getElementById("flagDropdown").addEventListener('hide.bs.dropdown', ({ clickEvent }) => {
+  if (clickEvent?.target) {
+
+    let elem = clickEvent.target
+    while (elem) {
+
+      if (!elem || !elem.dataset) {
+        return
+      }
+
+      if (!elem.dataset.countryClass) {
+        elem = elem.parentNode
+        continue
+      }
+
+      let selectedFlag = document.getElementById("currentFlag")
+      selectedFlag.className = "flag flag-" + elem.dataset.countryClass
+
+      document.getElementById("dialCode").innerHTML = '+' + elem.dataset.countryDial
+      document.getElementById("regionInput").value = elem.dataset.countryRegion
+      document.getElementById("phoneInput").placeholder = elem.dataset.phoneExample
+
+      break
+    }
+  }
+})
+
+</script>

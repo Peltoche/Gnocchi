@@ -6,7 +6,7 @@ export function SetupSideNav() {
 
   let innerWidth = null;
 
-  const setMode = (e) => {
+  const setMode = (_) => {
     const sidenavInstance = Sidenav.getOrCreateInstance(sidenav);
     // Check necessary for Android devices
     if (window.innerWidth === innerWidth) {

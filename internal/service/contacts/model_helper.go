@@ -1,11 +1,14 @@
 package contacts
 
 import (
+	"context"
 	"testing"
 	"time"
 
+	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/brianvoe/gofakeit/v7"
+	"github.com/stretchr/testify/require"
 )
 
 type FakeContactBuilder struct {
@@ -36,5 +39,16 @@ func NewFakeContact(t testing.TB) *FakeContactBuilder {
 }
 
 func (f *FakeContactBuilder) Build() *Contact {
+	return f.contact
+}
+
+func (f *FakeContactBuilder) BuildAndStore(ctx context.Context, db sqlstorage.Querier) *Contact {
+	f.t.Helper()
+
+	storage := newSqlStorage(db)
+
+	err := storage.Save(ctx, f.contact)
+	require.NoError(f.t, err)
+
 	return f.contact
 }
