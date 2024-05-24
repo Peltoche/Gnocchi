@@ -1,6 +1,10 @@
 package contacts
 
-import "github.com/Peltoche/gnocchi/internal/service/contacts"
+import (
+	"github.com/Peltoche/gnocchi/internal/service/contacts"
+	"github.com/Peltoche/gnocchi/internal/service/phonenumbers"
+	"github.com/Peltoche/gnocchi/internal/web/phones"
+)
 
 type ListPageTmpl struct {
 	Contacts []contacts.Contact
@@ -10,6 +14,7 @@ func (t *ListPageTmpl) Template() string { return "contacts/page_list" }
 
 type DetailsPageTmpl struct {
 	Contact *contacts.Contact
+	Phones  []phonenumbers.Phone
 }
 
 func (t *DetailsPageTmpl) Template() string { return "contacts/page_details" }
@@ -19,3 +24,15 @@ type ModalEditNameTmpl struct {
 }
 
 func (t *ModalEditNameTmpl) Template() string { return "contacts/modal_edit_name" }
+
+type ModalRegisterPhoneNumberTmpl struct {
+	Error    error
+	Input    string
+	Selected phones.PhoneData
+	Contact  *contacts.Contact
+	Phones   []phones.PhoneData
+}
+
+func (t *ModalRegisterPhoneNumberTmpl) Template() string {
+	return "contacts/modal_register_phonenumber"
+}

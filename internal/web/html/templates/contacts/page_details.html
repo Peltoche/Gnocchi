@@ -48,10 +48,38 @@
 <div class="container">
   <div class="d-flex flex-row justify-content-between pt-3 align-items-baseline">
     <h5><i class="fas fa-mobile-screen-button pe-2"></i> Phone</h5>
-    <button type="button" class="btn btn-outline-secondary btn-floating" data-mdb-ripple-init data-mdb-ripple-color="dark">
-      <i class="fas fa-plus"></i>
+    <button 
+      type="button" 
+      class="btn btn-link text-light" 
+      data-mdb-target="#modal-target"
+      data-mdb-modal-init 
+      hx-get="/web/contacts/{{.Contact.ID}}/phones" 
+      hx-target="#modal-target"
+      hx-trigger="click"
+      hx-swap="innerHTML"
+      data-mdb-ripple-init 
+      data-mdb-ripple-color="dark"
+    ><i class="fas fa-plus"></i>
     </button>
   </div>
+  <ul class="list-group list-group-light">
+    {{range .Phones}}
+    <li class="list-group-item d-flex align-items-baseline flex-row justify-content-between">
+      <span><span class="text-white-50 pe-3">{{.Type}}</span> {{.InternationalFormatted}}</span>
+      <button 
+        type="button" 
+        class="btn btn-link text-light" 
+        hx-swap="outerHTML"
+        hx-delete="/web/contacts/{{$.Contact.ID}}/phones/{{.ID}}"
+        hx-trigger="click"
+        hx-target="closest li"
+        data-mdb-ripple-init 
+        data-mdb-ripple-color="dark"
+      ><i class="fas fa-trash-can"></i> 
+      </button>
+    </li>
+    {{end}}
+  </ul>
 </div>
 
 
