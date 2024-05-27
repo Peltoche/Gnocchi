@@ -18,5 +18,5 @@ func TestTestStorage(t *testing.T) {
 	row.Scan(&res)
 
 	// There is more than 0 tables
-	assert.Greater(t, res, 0)
+	assert.Positive(t, res)
 }
