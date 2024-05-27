@@ -10,10 +10,10 @@
       <div class="modal-body">
 
         <div class="mb-3">
-        <select name="type" class="select" data-mdb-select-init>
-          <option selected value="Home">Home</option>
-          <option value="Work">Work</option>
-        </select>
+          <select name="type" class="select" data-mdb-select-init>
+            <option selected value="Home">Home</option>
+            <option value="Work">Work</option>
+          </select>
         </div>
 
         <div class="input-group mb-3">
@@ -44,14 +44,12 @@
           <input id="regionInput" type="hidden" name="region" value="{{.Selected.Iso2Code}}"/>
           <input id="phoneInput" type="tel" name="input" value="{{.Input}}" placeholder={{.Selected.Example}} class="form-control" data-mdb-input-mask-init aria-label="phone number" />
         </div>
+
+        {{if .Error}}
+        <br>
+        <div id="validation-alert" class="alert alert-danger role=">{{.Error}}</div>
+        {{end}}
       </div>
-
-      {{if .Error}}
-      <br>
-      <div id="validation-alert" class="alert alert-danger role=">{{.Error}}</div>
-      {{end}}
-
-  </div>
   <div class="modal-footer">
     <button type="button" id="closeBtn" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
     <button type="submit" type="button" class="btn btn-primary">Create</button>

@@ -34,7 +34,7 @@ func TestRunMigration(t *testing.T) {
 	row.Scan(&res)
 
 	// There is more than 3 tables
-	assert.Greater(t, res, 0)
+	assert.Positive(t, res)
 }
 
 func TestRunMigrationTwice(t *testing.T) {
