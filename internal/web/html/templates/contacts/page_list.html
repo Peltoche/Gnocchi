@@ -1,16 +1,41 @@
-<nav class="navbar sticky-top bg-primary">
-  <div class="container-fluid">
-    <a class="navbar-brand">Contacts</a>
-  </div>
-</nav>
+<header>
+  <nav class="navbar sticky-top bg-primary">
+    <div class="container-fluid justify-content-between">
+      <div class="d-flex flex-row align-items-center">
+        <a class="navbar-brand ps-4">Contacts</a>
+      </div>
+      <div>
+        <div class="dropdown">
+          <a class="btn btn-white btn-rounded shadow-0" role="button" data-mdb-dropdown-init
+            aria-expanded="false"><i class="fas fa-ellipsis-vertical fa-2x text-muted"></i></a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <li><a 
+              class="dropdown-item" 
+              data-mdb-target="#modal-target"
+              data-mdb-modal-init 
+              data-mdb-toggle="modal" 
+              hx-target="#modal-target"
+              hx-get="/web/contacts/imports" 
+              hx-trigger="click"
+              hx-swap="innerHTML"
+              data-mdb-ripple-init 
+            >
+              <i class="fas fa-arrow-up-from-bracket me-2"></i>Import</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<div class="container-fluid py-2">
-  <div class="list-group list-group-light">
-    {{ range .Contacts}}
-    <a href="/web/contacts/{{.ID}}" class="list-group-item text-truncate list-group-item-action px-3 border-0">{{ .Name.DisplayName }}</a>
-    {{end}}
+  <div class="container-fluid py-2">
+    <div class="list-group list-group-light">
+      {{ range .Contacts}}
+      <a href="/web/contacts/{{.ID}}" class="list-group-item text-truncate list-group-item-action px-3 border-0">{{ .Name.DisplayName }}</a>
+      {{end}}
+    </div>
   </div>
-</div>
+</header>
 
 <div class="fixed-action-btn" data-mdb-button-init data-mdb-ripple-init>
   <a class="btn btn-floating text-white btn-lg" hx-replace-url="true" hx-post="/web/contacts" hx-trigger="click" hx-target="body" data-mdb-ripple-init style="background-color: #f44336;">
@@ -19,3 +44,10 @@
   <ul>
   </ul>
 </div>
+
+<script type="module">
+import {Button, Ripple, Dropdown, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB({ Button, Ripple, Dropdown});
+
+</script>

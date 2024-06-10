@@ -1,0 +1,28 @@
+
+<div id="modal-content" class="modal-dialog modal-md" hx-target-2*="this" hx-target-4*="this">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit name</h5>
+      <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <form target="_top" hx-post="/web/contacts/imports"
+hx-encoding='multipart/form-data'
+      hx-on::after-request="document.getElementById('closeBtn').click()" hx-swap="outerHTML" hx-target="body">
+      <div class="modal-body">
+
+        <label for="fileInput" class="form-label">Import a CSV file</label>
+        <input class="form-control form-control-lg" name="file" id="fileInput" type="file" />
+
+        {{if .ErrorMsg}}
+        <br>
+        <div id="validation-alert" class="alert alert-danger role=">{{.ErrorMsg}}</div>
+        {{end}}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="closeBtn" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+        <button type="submit" type="button" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>

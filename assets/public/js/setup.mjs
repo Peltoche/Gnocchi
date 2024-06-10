@@ -31,7 +31,7 @@ export function SetupSideNav() {
 }
 
 
-export function SetupBootsrapElems() {
+export function SetupBootstrapElems() {
   // Make all the selects pretty even with the dynamic content
   document.body.addEventListener("htmx:afterSwap", function(evt) {
     console.log(evt)
