@@ -36,3 +36,11 @@ type ModalRegisterPhoneNumberTmpl struct {
 func (t *ModalRegisterPhoneNumberTmpl) Template() string {
 	return "contacts/modal_register_phonenumber"
 }
+
+type ModalImportsTmpl struct {
+	ErrorMsg string
+}
+
+func (t *ModalImportsTmpl) Template() string {
+	return "contacts/modal_imports"
+}

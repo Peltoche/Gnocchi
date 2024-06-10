@@ -12,6 +12,7 @@ import (
 	"github.com/Peltoche/gnocchi/internal/service/contacts"
 	"github.com/Peltoche/gnocchi/internal/service/phonenumbers"
 	"github.com/Peltoche/gnocchi/internal/service/utilities"
+	"github.com/Peltoche/gnocchi/internal/service/vcard"
 	"github.com/Peltoche/gnocchi/internal/tools"
 	"github.com/Peltoche/gnocchi/internal/tools/logger"
 	"github.com/Peltoche/gnocchi/internal/tools/router"
@@ -81,6 +82,7 @@ func start(ctx context.Context, cfg Config, invoke fx.Option) *fx.App {
 			// Services
 			fx.Annotate(contacts.Init, fx.As(new(contacts.Service))),
 			fx.Annotate(phonenumbers.Init, fx.As(new(phonenumbers.Service))),
+			fx.Annotate(vcard.Init, fx.As(new(vcard.Service))),
 
 			// HTTP handlers
 			AsRoute(assets.NewHTTPHandler),

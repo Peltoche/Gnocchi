@@ -19,9 +19,12 @@
 </body>
 
   <script type="module">
-import {Modal, initMDB} from "/assets/js/libs/mdb.es.min.js";
 
-initMDB({Modal});
+import {SetupBootstrapElems} from "/assets/js/setup.mjs"
+import {Modal, Button, Ripple, Dropdown, initMDB} from "/assets/js/libs/mdb.es.min.js";
+
+initMDB({Modal, Button, Ripple, Dropdown});
+SetupBootstrapElems()
 
   </script>
 
