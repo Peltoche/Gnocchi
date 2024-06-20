@@ -9,7 +9,6 @@ import (
 	"github.com/Peltoche/gnocchi/internal/service/contacts"
 	"github.com/Peltoche/gnocchi/internal/service/vcard"
 	"github.com/Peltoche/gnocchi/internal/tools/router"
-	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/Peltoche/gnocchi/internal/web/html"
 	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/contacts"
 	"github.com/go-chi/chi/v5"
@@ -35,7 +34,6 @@ func (h *ListPage) Register(r chi.Router, mids *router.Middlewares) {
 	}
 
 	r.Get("/web/contacts", h.getList)
-	r.Get("/web/contacts/more", h.getMoreContacts)
 	r.Post("/web/contacts", h.createNewContact)
 	r.Get("/web/contacts/imports", h.getImportsModal)
 	r.Post("/web/contacts/imports", h.importFile)
@@ -44,7 +42,7 @@ func (h *ListPage) Register(r chi.Router, mids *router.Middlewares) {
 func (h *ListPage) getList(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
-	contacts, err := h.contacts.GetAll(ctx, &sqlstorage.PaginateCmd{Limit: 20})
+	contacts, err := h.contacts.GetAll(ctx)
 	if err != nil {
 		h.html.WriteHTMLErrorPage(w, r, fmt.Errorf("failed to get the contact list: %w", err))
 		return
@@ -53,9 +51,6 @@ func (h *ListPage) getList(w http.ResponseWriter, r *http.Request) {
 	h.html.WriteHTMLTemplate(w, r, http.StatusOK, &contactstmpl.ListPageTmpl{
 		Contacts: contacts,
 	})
-}
-
-func (h *ListPage) getMoreContacts(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *ListPage) createNewContact(w http.ResponseWriter, r *http.Request) {
