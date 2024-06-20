@@ -93,10 +93,10 @@ func Test_Contacts_Service(t *testing.T) {
 			*NewFakeContact(t).Build(),
 		}
 
-		storage.On("GetAll", ctx, &sqlstorage.PaginateCmd{}).Return(contacts, nil)
+		storage.On("GetAll", ctx, (*sqlstorage.PaginateCmd)(nil)).Return(contacts, nil)
 
 		// Run
-		res, err := service.GetAll(ctx, &sqlstorage.PaginateCmd{})
+		res, err := service.GetAll(ctx)
 
 		// Asserts
 		require.NoError(t, err)
@@ -111,10 +111,10 @@ func Test_Contacts_Service(t *testing.T) {
 		storage := newMockStorage(t)
 		service := newService(tools, storage)
 
-		storage.On("GetAll", ctx, &sqlstorage.PaginateCmd{}).Return(nil, fmt.Errorf("some-error"))
+		storage.On("GetAll", ctx, (*sqlstorage.PaginateCmd)(nil)).Return(nil, fmt.Errorf("some-error"))
 
 		// Run
-		res, err := service.GetAll(ctx, &sqlstorage.PaginateCmd{})
+		res, err := service.GetAll(ctx)
 
 		// Asserts
 		require.ErrorContains(t, err, "some-error")

@@ -36,8 +36,8 @@ func newService(tools tools.Tools, storage storage) *service {
 	}
 }
 
-func (s *service) GetAll(ctx context.Context, paginateCmd *sqlstorage.PaginateCmd) ([]Contact, error) {
-	res, err := s.storage.GetAll(ctx, paginateCmd)
+func (s *service) GetAll(ctx context.Context) ([]Contact, error) {
+	res, err := s.storage.GetAll(ctx, nil)
 	if err != nil {
 		return nil, errs.Internal(err)
 	}

@@ -44,7 +44,7 @@ func (s *service) ImportVCardFile(ctx context.Context, file io.Reader) error {
 			continue
 		}
 
-		if !strings.HasPrefix(card.Value("VERION"), "3.") {
+		if !strings.HasPrefix(card.Value("VERSION"), "3.") {
 			return ErrUnsupportedVCardVersion
 		}
 

@@ -13,7 +13,7 @@ type Service interface {
 	Create(ctx context.Context, cmd *CreateCmd) (*Contact, error)
 	GetByID(ctx context.Context, id uuid.UUID) (*Contact, error)
 	EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, error)
-	GetAll(ctx context.Context, paginateCmd *sqlstorage.PaginateCmd) ([]Contact, error)
+	GetAll(ctx context.Context) ([]Contact, error)
 	Delete(ctx context.Context, contact *Contact) error
 }
 
