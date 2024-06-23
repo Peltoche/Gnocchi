@@ -6,8 +6,11 @@ import (
 	"testing"
 	"time"
 
+	stdlanguage "golang.org/x/text/language"
+
 	"github.com/Peltoche/gnocchi/internal/tools"
 	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/language"
 	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/stretchr/testify/assert"
@@ -81,6 +84,7 @@ func Test_Contacts_Service(t *testing.T) {
 	t.Run("GetAll success", func(t *testing.T) {
 		t.Parallel()
 		ctx := context.Background()
+		ctx = language.SetBrowserLangFromReq(ctx, stdlanguage.English)
 
 		tools := tools.NewMock(t)
 		storage := newMockStorage(t)
@@ -106,6 +110,7 @@ func Test_Contacts_Service(t *testing.T) {
 	t.Run("GetAll with a storage error", func(t *testing.T) {
 		t.Parallel()
 		ctx := context.Background()
+		ctx = language.SetBrowserLangFromReq(ctx, stdlanguage.English)
 
 		tools := tools.NewMock(t)
 		storage := newMockStorage(t)
