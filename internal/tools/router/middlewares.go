@@ -8,6 +8,7 @@ import (
 	"slices"
 
 	"github.com/Peltoche/gnocchi/internal/tools"
+	"github.com/Peltoche/gnocchi/internal/tools/language"
 	"github.com/Peltoche/gnocchi/internal/tools/logger"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
@@ -16,6 +17,7 @@ import (
 type Middleware func(next http.Handler) http.Handler
 
 type Middlewares struct {
+	BrowserLang  Middleware
 	StripSlashed Middleware
 	Logger       Middleware
 	OnlyJSON     Middleware
@@ -29,11 +31,13 @@ func (m *Middlewares) Defaults() []func(next http.Handler) http.Handler {
 		m.RealIP,
 		m.StripSlashed,
 		m.CORS,
+		m.BrowserLang,
 	}
 }
 
 func InitMiddlewares(tools tools.Tools, cfg Config) *Middlewares {
 	return &Middlewares{
+		BrowserLang:  language.Middleware,
 		StripSlashed: middleware.StripSlashes,
 		Logger:       logger.NewRouterLogger(tools.Logger()),
 		OnlyJSON:     middleware.AllowContentType("application/json"),

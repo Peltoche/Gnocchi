@@ -8,8 +8,10 @@ import (
 	"github.com/Peltoche/gnocchi/internal/tools"
 	"github.com/Peltoche/gnocchi/internal/tools/clock"
 	"github.com/Peltoche/gnocchi/internal/tools/errs"
+	"github.com/Peltoche/gnocchi/internal/tools/language"
 	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	"github.com/Peltoche/gnocchi/internal/tools/uuid"
+	"golang.org/x/text/collate"
 )
 
 //go:generate mockery --name storage
@@ -42,7 +44,15 @@ func (s *service) GetAll(ctx context.Context) ([]Contact, error) {
 		return nil, errs.Internal(err)
 	}
 
-	return res, nil
+	browserLang := language.GetBrowserLangFromReq(ctx)
+
+	collator := collate.New(browserLang, collate.IgnoreCase, collate.IgnoreDiacritics)
+
+	contactList := &contactList{res}
+
+	collator.Sort(contactList)
+
+	return contactList.contacts, nil
 }
 
 func (s *service) GetByID(ctx context.Context, id uuid.UUID) (*Contact, error) {
@@ -107,4 +117,20 @@ func (s *service) EditName(ctx context.Context, cmd *EditNameCmd) (*Contact, err
 	updatedContact.name = &newName
 
 	return &updatedContact, nil
+}
+
+type contactList struct {
+	contacts []Contact
+}
+
+func (l *contactList) Len() int {
+	return len(l.contacts)
+}
+
+func (l *contactList) Swap(i, j int) {
+	l.contacts[i], l.contacts[j] = l.contacts[j], l.contacts[i]
+}
+
+func (l *contactList) Bytes(i int) []byte {
+	return []byte(l.contacts[i].name.DisplayName())
 }
