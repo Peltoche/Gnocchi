@@ -10,20 +10,20 @@ type ListPageTmpl struct {
 	Contacts []contacts.Contact
 }
 
-func (t *ListPageTmpl) Template() string { return "contacts/page_list" }
+func (t *ListPageTmpl) Template() string { return "pages/contacts/page_list" }
 
 type DetailsPageTmpl struct {
 	Contact *contacts.Contact
 	Phones  []phonenumbers.Phone
 }
 
-func (t *DetailsPageTmpl) Template() string { return "contacts/page_details" }
+func (t *DetailsPageTmpl) Template() string { return "pages/contacts/page_details" }
 
 type ModalEditNameTmpl struct {
 	Contact *contacts.Contact
 }
 
-func (t *ModalEditNameTmpl) Template() string { return "contacts/modal_edit_name" }
+func (t *ModalEditNameTmpl) Template() string { return "pages/contacts/modal_edit_name" }
 
 type ModalRegisterPhoneNumberTmpl struct {
 	Error    error
@@ -34,7 +34,7 @@ type ModalRegisterPhoneNumberTmpl struct {
 }
 
 func (t *ModalRegisterPhoneNumberTmpl) Template() string {
-	return "contacts/modal_register_phonenumber"
+	return "pages/contacts/modal_register_phonenumber"
 }
 
 type ModalImportsTmpl struct {
@@ -42,5 +42,5 @@ type ModalImportsTmpl struct {
 }
 
 func (t *ModalImportsTmpl) Template() string {
-	return "contacts/modal_imports"
+	return "pages/contacts/modal_imports"
 }

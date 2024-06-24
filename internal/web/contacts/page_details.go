@@ -13,7 +13,7 @@ import (
 	"github.com/Peltoche/gnocchi/internal/tools/router"
 	"github.com/Peltoche/gnocchi/internal/tools/uuid"
 	"github.com/Peltoche/gnocchi/internal/web/html"
-	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/contacts"
+	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/pages/contacts"
 	"github.com/Peltoche/gnocchi/internal/web/phones"
 	"github.com/go-chi/chi/v5"
 )

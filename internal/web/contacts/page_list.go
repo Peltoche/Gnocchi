@@ -10,7 +10,7 @@ import (
 	"github.com/Peltoche/gnocchi/internal/service/vcard"
 	"github.com/Peltoche/gnocchi/internal/tools/router"
 	"github.com/Peltoche/gnocchi/internal/web/html"
-	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/contacts"
+	contactstmpl "github.com/Peltoche/gnocchi/internal/web/html/templates/pages/contacts"
 	"github.com/go-chi/chi/v5"
 )
 
