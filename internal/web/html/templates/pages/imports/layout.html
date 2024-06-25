@@ -1,7 +1,7 @@
 <!doctype html >
 {{ template "header"}}
 
-<body hx-ext="response-targets" hx-target-5*="this">
+<body hx-ext="response-targets" hx-target-5*="this" hx-target-4*="this">
   <main>
     <!-- Modal -->
     <div id="modal-target" class="modal modal-blur fade" tabindex="-1" aria-hidden="true">
@@ -11,7 +11,10 @@
     </div>
 
 
+    <div id="content">
     {{ yield }}
+    </div>
+
     {{template "sidenav"}}
   </main>
 

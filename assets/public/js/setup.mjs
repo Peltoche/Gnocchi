@@ -2,7 +2,7 @@
 import { Sidenav, Datatable, Dropdown, Collapse, Select } from "/assets/js/libs/mdb.es.min.js";
 
 export function SetupSideNav() {
-  const sidenav = document.getElementById("main-sidenav");
+  const sidenav = document.getElementById("sidenav");
 
   let innerWidth = null;
 

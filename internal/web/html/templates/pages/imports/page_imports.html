@@ -1,0 +1,24 @@
+<header>
+  <nav class="navbar sticky-top bg-primary">
+    <div class="container-fluid justify-content-start">
+        <a class="navbar-nav" href="/web/contacts" hx-boost="true"><i class="fas fa-arrow-left fa-lg"></i></a>
+        <a class="navbar-brand ps-4">Imports</a>
+    </div>
+  </nav>
+</header>
+
+  <div class="container-fluid py-2">
+<h3 class="my-3">Import a csv file</h3>
+
+<form target="_top" hx-post="/web/imports/vcs"
+  hx-encoding='multipart/form-data'
+   hx-swap="outerHTML" hx-target="body">
+    <label for="fileInput" class="visually-hidden">Import a CSV file</label>
+    <input class="form-control" name="file" id="fileInput" type="file" />
+    <button type="submit" class="btn btn-primary my-3">Submit</button>
+</form>
+
+    {{if .ErrorMsg}}
+    <div id="validation-alert" class="alert alert-danger role=">{{.ErrorMsg}}</div>
+    {{end}}
+  </div>
