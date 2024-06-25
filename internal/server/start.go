@@ -19,6 +19,7 @@ import (
 	"github.com/Peltoche/gnocchi/internal/tools/sqlstorage"
 	contactsweb "github.com/Peltoche/gnocchi/internal/web/contacts"
 	"github.com/Peltoche/gnocchi/internal/web/html"
+	importsweb "github.com/Peltoche/gnocchi/internal/web/imports"
 	"github.com/spf13/afero"
 	"go.uber.org/fx"
 	"go.uber.org/fx/fxevent"
@@ -91,6 +92,7 @@ func start(ctx context.Context, cfg Config, invoke fx.Option) *fx.App {
 			// Web Pages
 			AsRoute(contactsweb.NewListPage),
 			AsRoute(contactsweb.NewDetailsPage),
+			AsRoute(importsweb.NewImportsPage),
 
 			// HTTP Router / HTTP Server
 			router.InitMiddlewares,

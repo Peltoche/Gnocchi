@@ -1,0 +1,37 @@
+{{define "sidenav-btn"}}
+<button
+  data-mdb-ripple-init
+  data-mdb-toggle="sidenav"
+  data-mdb-target="#sidenav"
+  class="btn shadow-0 p-0 me-3 d-block d-xxl-none"
+  aria-controls="#sidenav"
+  aria-haspopup="true"
+>
+  <i class="fas fa-bars fa-lg"></i>
+</button>
+{{end}}
+
+{{define "sidenav"}}
+<!-- Sidenav -->
+<nav
+  data-mdb-sidenav-init
+  id="sidenav"
+  class="sidenav"
+  data-mdb-hidden="true"
+>
+  <ul class="sidenav-menu">
+    <li class="sidenav-item">
+       <a class="sidenav-link" href="/web/contacts" hx-boost="true">
+        <i class="fas fa-address-book me-2"></i>Contacts
+      </a>
+    </li>
+    <li class="sidenav-item">
+       <a class="sidenav-link" href="/web/imports" hx-boost="true">
+        <i class="fas fa-arrow-up-from-bracket me-2"></i>Import
+      </a>
+    </li>
+  </ul>
+</nav>
+<!-- Sidenav -->
+{{end}}
+
